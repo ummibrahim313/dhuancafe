@@ -15,6 +15,18 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Menu', href: '/menu' },
@@ -82,7 +94,8 @@ const Navbar = () => {
 
         {/* Mobile Menu - Full Screen Drawer */}
         {isOpen && (
-          <div className="md:hidden fixed inset-0 bg-chai-dark z-50 flex flex-col">
+          <>
+            <div className="md:hidden fixed inset-0 bg-chai-dark z-50 flex flex-col">
             <div className="flex justify-between items-center p-4">
               <Link to="/" className="flex items-center">
                 <span className="font-heading text-lg md:text-2xl font-bold text-chai-light uppercase">DHUAN</span>
@@ -119,7 +132,8 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </>
         )}
       </nav>
     </>

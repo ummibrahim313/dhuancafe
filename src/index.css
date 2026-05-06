@@ -7,12 +7,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   
   body {
     font-family: 'Nunito', sans-serif;
     background-color: #FDF8F5;
     color: #3D1F0D;
+    overflow-x: hidden;
   }
 }
 
